@@ -6,7 +6,7 @@ const userAuth = async(req,res,next)=>{
         if(!token){
             throw new Error("please login");
         }
-        const decodedMessage = await jwt.verify(token,"JobHunt");
+        const decodedMessage = await jwt.verify(token, process.env.JWT_SECRET || "JobHunt");
         if(!decodedMessage){
             throw new Error("Invalid Token")
         }

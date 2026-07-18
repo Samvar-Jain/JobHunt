@@ -1,13 +1,14 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
-const URI = "mongodb+srv://shivam9198:Bangtk1230@jobhunt.iccjgmf.mongodb.net/jobHunt";
 
-const dbConnect = async()=>{
- try {
-    await mongoose.connect(URI);
- } catch (error) {
-    console.log(error)
- }
+const dbConnect = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB connected");
+  } catch (error) {
+    console.error("MongoDB connection failed:", error.message);
+    process.exit(1);
+  }
+};
 
-}
 module.exports = dbConnect;
-
